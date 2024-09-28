@@ -36,7 +36,7 @@
     &quot;last_opened_file_path&quot;: &quot;C:/Users/USER/Desktop/Códigos/trabalho03-grafos&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Graph">
     <configuration name="EulerianGraph" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="EulerianGraph" />
       <module name="trabalho03-grafos" />
@@ -44,8 +44,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Graph" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Graph" />
+      <module name="trabalho03-grafos" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Graph" />
         <item itemvalue="Application.EulerianGraph" />
       </list>
     </recent_temporary>
