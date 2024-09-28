@@ -18,9 +18,15 @@ class Graph {
 
 
     public void addEdge(int v, int w) {
-        if (!adj.get(w).contains(v)  && !adj.get(v).contains(w)){
+        if (!adj.get(w).contains(v)){
             adj.get(v).add(w);
         }
+
+        if (!adj.get(v).contains(w)){
+            adj.get(w).add(v);
+        }
+
+
     }
 
 
