@@ -29,59 +29,8 @@ class Graph {
 
     }
 
-
-    private boolean[] dfsIterative(int start) {
-        boolean[] visited = new boolean[V];
-        Stack<Integer> stack = new Stack<>();
-        stack.push(start);
-        visited[start] = true;
-
-        while (!stack.isEmpty()) {
-            int v = stack.pop();
-            for (int neighbor : adj.get(v)) {
-                if (!visited[neighbor]) {
-                    visited[neighbor] = true;
-                    stack.push(neighbor);
-                }
-            }
-        }
-        return visited;
-    }
-
-
-    public boolean isConnected() {
-        int i;
-
-        for (i = 0; i < V; i++) {
-            if (adj.get(i).size() > 0) {
-                break;
-            }
-        }
-
-        if (i == V) {
-            return true;
-        }
-
-
-        boolean[] visited = dfsIterative(i);
-
-
-        for (i = 0; i < V; i++) {
-            if (!visited[i] && adj.get(i).size() > 0) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-
+    
     public int isEulerian() {
-
-        if (!isConnected()) {
-            return 0;
-        }
-
 
         int odd = 0;
         for (int i = 0; i < V; i++) {
