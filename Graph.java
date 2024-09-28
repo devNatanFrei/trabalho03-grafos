@@ -1,6 +1,8 @@
 import java.io.*;
 import java.util.*;
 
+
+
 class Graph {
     private int V;
     private List<List<Integer>> adj;
@@ -16,8 +18,9 @@ class Graph {
 
 
     public void addEdge(int v, int w) {
-        adj.get(v).add(w);
-        adj.get(w).add(v);
+        if (!adj.get(w).contains(v)  && !adj.get(v).contains(w)){
+            adj.get(v).add(w);
+        }
     }
 
 
@@ -42,7 +45,7 @@ class Graph {
 
     public boolean isConnected() {
         int i;
-        // Encontra o primeiro vértice com grau maior que 0
+
         for (i = 0; i < V; i++) {
             if (adj.get(i).size() > 0) {
                 break;
@@ -140,7 +143,7 @@ class Graph {
 
             Graph g = readGraphFromFile(filename);
 
-           
+
             System.out.println(g.printResult());
         } catch (IOException e) {
             System.out.println("Erro ao ler o arquivo: " + e.getMessage());
