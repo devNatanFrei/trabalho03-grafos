@@ -40,7 +40,7 @@ class Graph {
         }
     }
 
-    // Imprime o resultado
+  
     public String printResult() {
         int res = isEulerian();
         if (res == 0) {
