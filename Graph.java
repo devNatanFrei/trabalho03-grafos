@@ -45,11 +45,7 @@ class Graph {
         }
     }
 
-<<<<<<< HEAD
 
-=======
-  
->>>>>>> ebf48d7e46f5d1086fbee4276ce2d8fdac96c8e5
     public String printResult() {
         int res = isEulerian();
         if (res == 0) {
