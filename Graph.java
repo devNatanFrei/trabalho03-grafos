@@ -1,21 +1,21 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Map;
 
-class Graph {
-    private int V;
-    private ArrayList<ArrayList<Integer>> adj;
+public class Graph {
+    private Map<Integer, ArrayList<Integer>> adj;
 
-
-    public Graph(int V) {
-        this.V = V;
-        adj = new ArrayList<>();
-        for (int i = 0; i < V; i++) {
-            adj.add(new ArrayList<>());
-        }
+    public Graph() {
+        this.adj = new HashMap<>();
     }
 
-
     public void addEdge(int v, int w) {
+        adj.putIfAbsent(v, new ArrayList<>());
+        adj.putIfAbsent(w, new ArrayList<>());
+
         if (!adj.get(v).contains(w)) {
             adj.get(v).add(w);
         }
@@ -24,103 +24,68 @@ class Graph {
         }
     }
 
-
     public int isEulerian() {
-        int odd = 0;
+        int oddCount = 0;
 
-
-        for (int i = 0; i < V; i++) {
-            if (adj.get(i).size() % 2 != 0) {
-                odd++;
+        for (ArrayList<Integer> neighbors : adj.values()) {
+            if (neighbors.size() % 2 != 0) {
+                oddCount++;
             }
         }
 
-
-        if (odd > 2) {
-            return 0;
-        } else if (odd == 2) {
-            return 1;
+        if (oddCount > 2) {
+            return 0;  // Not Eulerian
+        } else if (oddCount == 2) {
+            return 1;  // Semi-Eulerian
         } else {
-            return 2;
+            return 2;  // Eulerian
         }
     }
-
 
     public String printResult() {
-        int res = isEulerian();
-        if (res == 0) {
-            return "Não é Euleriano";
-        } else if (res == 1) {
-            return "Semi-Euleriano";
-        } else {
-            return "É Euleriano";
+        int result = isEulerian();
+        switch (result) {
+            case 0:
+                return "Não é Euleriano";
+            case 1:
+                return "Semi-Euleriano";
+            default:
+                return "É Euleriano";
         }
     }
 
-
-    public static Graph readGraphFromFile(String filename) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(filename));
-        String line;
-        List<int[]> edges = new ArrayList<>();
-
-
-        while ((line = br.readLine()) != null) {
-            String[] parts = line.trim().split("\\s+");
-        
-            int v = Integer.parseInt(parts[0]);
-            int w = Integer.parseInt(parts[1]);
-            edges.add(new int[] { v, w });
+    public static Graph readGraphFromFile(String filename) {
+        Graph g = new Graph();
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                if (!line.trim().isEmpty()) {
+                    String[] parts = line.split(" ");
+                    int v = Integer.parseInt(parts[0]);
+                    int w = Integer.parseInt(parts[1]);
+                    g.addEdge(v, w);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-        br.close();
-
-
-        int maxVertex = -1;
-        for (int[] edge : edges) {
-            maxVertex = Math.max(maxVertex, Math.max(edge[0], edge[1]));
-        }
-
-        int numVertices = maxVertex + 1;
-        Graph g = new Graph(numVertices);
-
-
-        for (int[] edge : edges) {
-            g.addEdge(edge[0], edge[1]);
-        }
-
         return g;
     }
 
     public static void main(String[] args) {
-        try {
-            String filename = "Email-Enron.txt";
-            String filename1 = "grafo1.txt";
-            String filename2 = "grafo2.txt";
-            String filename3 = "grafo3.txt";
-            String filename4 = "grafo4.txt";
+        String[] filenames = {
+                "Email-Eron.txt",
+                "grafo1.txt",
+                "grafo2.txt",
+                "grafo3.txt",
+                "grafo4.txt"
+        };
 
-
+        for (String filename : filenames) {
             Graph g = readGraphFromFile(filename);
-            Graph g1 = readGraphFromFile(filename1);
-            Graph g2 = readGraphFromFile(filename2);
-            Graph g3 = readGraphFromFile(filename3);
-            Graph g4 = readGraphFromFile(filename4);
-
-
-            System.out.println("Resultados:\n");
-            System.out.println("Email-Enron:");
+            System.out.println("Resultados:");
+            System.out.println("Grafo " + filename + ":");
             System.out.println(g.printResult());
-            System.out.println("\nGrafo 1:");
-            System.out.println(g1.printResult());
-            System.out.println("\nGrafo 2:");
-            System.out.println(g2.printResult());
-            System.out.println("\nGrafo 3:");
-            System.out.println(g3.printResult());
-            System.out.println("\nGrafo 4:");
-            System.out.println(g4.printResult());
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }
