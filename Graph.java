@@ -81,12 +81,29 @@ public class Graph {
                 "grafo4.txt"
         };
 
-        for (String filename : filenames) {
-            Graph g = readGraphFromFile(filename);
-            System.out.println("Resultados:");
-            System.out.println("Grafo " + filename + ":");
-            System.out.println(g.printResult());
-            System.out.println();
-        }
+        System.out.println("Resultados:");
+        Graph g = readGraphFromFile("Email-Enron.txt");
+        System.out.println("Grafo Email-Enron.txt:");
+        System.out.println(g.printResult());
+        System.out.println();
+        Graph g1 = readGraphFromFile("grafo1.txt");
+        System.out.println("Grafo grafo1.txt:");
+        System.out.println(g1.printResult());
+        System.out.println();
+        Graph g2 = readGraphFromFile("grafo2.txt");
+        System.out.println("Grafo grafo2.txt:");
+        System.out.println(g2.printResult());
+        System.out.println();
+        Graph g3 = readGraphFromFile("grafo3.txt");
+        System.out.println("Grafo grafo3.txt:");
+        System.out.println(g3.printResult());
+        System.out.println();
+        Graph g4 = readGraphFromFile("grafo4.txt");
+        System.out.println("Grafo grafo4.txt:");
+        System.out.println(g4.printResult());
+        System.out.println();
+
+
+       
     }
 }
