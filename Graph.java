@@ -60,7 +60,7 @@ public class Graph {
             String line;
             while ((line = br.readLine()) != null) {
                 if (!line.trim().isEmpty()) {
-                    String[] parts = line.split(" ");
+                    String[] parts = line.split("\\s+");
                     int v = Integer.parseInt(parts[0]);
                     int w = Integer.parseInt(parts[1]);
                     g.addEdge(v, w);
@@ -74,7 +74,7 @@ public class Graph {
 
     public static void main(String[] args) {
         String[] filenames = {
-                "Email-Eron.txt",
+                "Email-Enron.txt",
                 "grafo1.txt",
                 "grafo2.txt",
                 "grafo3.txt",
