@@ -34,11 +34,11 @@ public class Graph {
         }
 
         if (oddCount > 2) {
-            return 0;  // Not Eulerian
+            return 0;
         } else if (oddCount == 2) {
-            return 1;  // Semi-Eulerian
+            return 1;
         } else {
-            return 2;  // Eulerian
+            return 2;  
         }
     }
 
