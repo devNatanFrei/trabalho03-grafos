@@ -73,14 +73,7 @@ public class Graph {
     }
 
     public static void main(String[] args) {
-        String[] filenames = {
-                "Email-Enron.txt",
-                "grafo1.txt",
-                "grafo2.txt",
-                "grafo3.txt",
-                "grafo4.txt"
-        };
-
+        
         System.out.println("Resultados:");
         Graph g = readGraphFromFile("Email-Enron.txt");
         System.out.println("Grafo Email-Enron.txt:");
@@ -104,6 +97,6 @@ public class Graph {
         System.out.println();
 
 
-       
+
     }
 }
