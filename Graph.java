@@ -38,7 +38,7 @@ public class Graph {
         } else if (oddCount == 2) {
             return 1;
         } else {
-            return 2;  
+            return 2;
         }
     }
 
@@ -86,6 +86,7 @@ public class Graph {
             System.out.println("Resultados:");
             System.out.println("Grafo " + filename + ":");
             System.out.println(g.printResult());
+            System.out.println();
         }
     }
 }
